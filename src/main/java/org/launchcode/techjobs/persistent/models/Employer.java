@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Employer extends AbstractEntity {
+public class Employer extends AbstractEntity {//inherits form abstractentity
     @NotBlank(message = "Location is required.")
     @Size(max = 50, message = "Location must be less than 50 characters.")
     private String location;
 
     @OneToMany
     @JoinColumn(name = "employer_id")
-    private  List<Job> jobs = new ArrayList<>();
+    private  List<Job> jobs = new ArrayList<>();//list to hold associated jobs
 
-    public Employer() {}
+    public Employer() {}//default constructor
 
 
     public String getLocation() {

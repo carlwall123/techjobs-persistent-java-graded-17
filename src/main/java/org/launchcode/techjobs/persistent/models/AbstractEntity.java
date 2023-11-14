@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
-@MappedSuperclass
+@MappedSuperclass//base class for other entities
 public abstract class AbstractEntity {
 
     @Id

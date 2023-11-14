@@ -25,20 +25,20 @@ public class JobData {
 
         ArrayList<Job> results = new ArrayList<>();
 
-        if (value.toLowerCase().equals("all")){
+        if (value.toLowerCase().equals("all")){//if all return all jobs
             return (ArrayList<Job>) allJobs;
         }
 
         if (column.equals("all")){
-            results = findByValue(value, allJobs);
+            results = findByValue(value, allJobs);//if column is all search all fields
             return results;
         }
         for (Job job : allJobs) {
 
-            String aValue = getFieldValue(job, column);
+            String aValue = getFieldValue(job, column);//get value of the specified field
 
             if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
-                results.add(job);
+                results.add(job);//add job to results if it matches the serch term
             }
         }
 
@@ -71,13 +71,13 @@ public class JobData {
         ArrayList<Job> results = new ArrayList<>();
 
         for (Job job : allJobs) {
-
+//check if any field of the job contains the search term
             if (job.getName().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
             } else if (job.getEmployer().toString().toLowerCase().contains(value.toLowerCase())) {
                 results.add(job);
             } else if (job.getSkills().toString().toLowerCase().contains(value.toLowerCase())) {
-                results.add(job);
+                results.add(job);//add job to results if it matches
             }
 
         }

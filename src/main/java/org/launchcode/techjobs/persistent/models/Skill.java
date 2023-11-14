@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Skill extends AbstractEntity {
+public class Skill extends AbstractEntity {//inherits from abstractentity class
 
     @NotBlank(message = "Description is required")
     @Size(max = 500, message = "Description must be less than 500 characters.")
     private String description;
     
-    @ManyToMany(mappedBy = "skills")
-    private List<Job> jobs = new ArrayList<>();
+    @ManyToMany(mappedBy = "skills")//defines a manyToMany relationship with the job entity
+    private List<Job> jobs = new ArrayList<>();//list to hold associated jobs
 
     public Skill(){}
 

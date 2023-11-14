@@ -29,10 +29,10 @@ public class ListController {
     @Autowired
    private SkillRepository skillRepository;
 
-    static HashMap<String, String> columnChoices = new HashMap<>();
+    static HashMap<String, String> columnChoices = new HashMap<>();//hashmap to store column choices for job listings
 
     public ListController () {
-
+//initialize column choices
         columnChoices.put("all", "All");
         columnChoices.put("employer", "Employer");
         columnChoices.put("skill", "Skill");
@@ -41,8 +41,8 @@ public class ListController {
 
     @RequestMapping("")
     public String list(Model model) {
-        model.addAttribute("employers", employerRepository.findAll());
-        model.addAttribute("skills", skillRepository.findAll());
+        model.addAttribute("employers", employerRepository.findAll());//adds all employers to model
+        model.addAttribute("skills", skillRepository.findAll());//adds all skills to model
 
 
         return "list";
@@ -51,12 +51,12 @@ public class ListController {
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Job> jobs;
-        if (column.toLowerCase().equals("all")){
-            jobs = jobRepository.findAll();
-            model.addAttribute("title", "All Jobs");
+        if (column.toLowerCase().equals("all")){//check if the column is "all"
+            jobs = jobRepository.findAll();//fetches all jobs
+            model.addAttribute("title", "All Jobs");//sets title for All Jobs
         } else {
-            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
-            model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
+            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());//fetches jobs based on specific column and values
+            model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);//adds list of jobs tp the model
         }
         model.addAttribute("jobs", jobs);
 

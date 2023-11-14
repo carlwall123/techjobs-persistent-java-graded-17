@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Job extends AbstractEntity{
+public class Job extends AbstractEntity{//inherits from abstractentity
 
-    @ManyToOne
+    @ManyToOne//defines a manytoone relationship with employer
     private Employer employer;
 
-    @ManyToMany
+    @ManyToMany//defines a manytomany relationsship with skill
     private List<Skill> skills;
 
 
-    public Job() {
+    public Job() {//default constructor
     }
 
 
     public Job(Employer employer, List<Skill> skills)  {
-        super();
+        super();//calls the constructor of the superclass(abstractentity)
         this.employer = employer;
         this.skills = skills;
     }

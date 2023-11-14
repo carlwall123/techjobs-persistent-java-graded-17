@@ -22,7 +22,7 @@ public class SearchController {
 
     @RequestMapping("")
     public String search(Model model) {
-        model.addAttribute("columns", columnChoices);
+        model.addAttribute("columns", columnChoices);//adds column choices for the search to model
         return "search";
     }
 
@@ -30,14 +30,15 @@ public class SearchController {
     @PostMapping("results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
         Iterable<Job> jobs;
-        if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
-            jobs = jobRepository.findAll();
+        if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){//checks if search term is all or empty
+            jobs = jobRepository.findAll();//fetch all jobs
         } else {
+            //fetches jobs based on specific search type and term
             jobs = JobData.findByColumnAndValue(searchType, searchTerm, jobRepository.findAll());
         }
-        model.addAttribute("columns", columnChoices);
-        model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
-        model.addAttribute("jobs", jobs);
+        model.addAttribute("columns", columnChoices);//adds colukmn choices to the model
+        model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);//sets the title based on criteria
+        model.addAttribute("jobs", jobs);//adds list  of jobs tp the model
 
         return "search";
     }
