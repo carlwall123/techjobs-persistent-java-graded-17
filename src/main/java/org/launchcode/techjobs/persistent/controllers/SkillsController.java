@@ -13,13 +13,14 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("skills")
-public class SkillController {
+public class SkillsController {
 
     @Autowired
     private SkillRepository skillRepository;
 
-    @GetMapping("")
-    public String index(Model model) {
+    @GetMapping
+    private String index(Model model) {
+        model.addAttribute("title", "All Skills");
         model.addAttribute("skills", skillRepository.findAll());
         return "skills/index";
     }
@@ -38,7 +39,7 @@ public class SkillController {
             return "skills/add";
         }
         skillRepository.save(newSkill);
-        return "redirect:";
+        return "redirect:/skills/add";
     }
 
     @GetMapping("view/{skillId}")

@@ -1,5 +1,5 @@
 --Part 1
-SELECT *
+SELECT FIELDS
 FROM job
 --Part 2
 SELECT name
@@ -7,11 +7,10 @@ FROM employers
 WHERE location = 'St. Louis City';
 --Part 3
 -- Part 3: SQL Task
-DROP TABLE IF EXISTS job;
+DROP TABLE JOB
 
 --Part 4
-SELECT DISTINCT skill.name
-FROM skill
-JOIN job_skill ON skill.id = job_skill.skill_id
-JOIN job ON job_skill.job_id = job.id
-ORDER BY skill.name ASC;
+SELECT * FROM skill
+JOIN job_skills ON skill.id = job_skills.skills_id
+WHERE job_skills.jobs_id IS NOT NULL
+ORDER BY name 

@@ -6,6 +6,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import javax.print.attribute.standard.JobHoldUntil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +16,13 @@ public class Employer extends AbstractEntity {
     @Size(max = 50, message = "Location must be less than 50 characters.")
     private String location;
 
-    public Employer() {}
-
     @OneToMany
     @JoinColumn(name = "employer_id")
-    private List<Job> jobs = new ArrayList<>();
+    private  List<Job> jobs = new ArrayList<>();
+
+    public Employer() {}
+
+
     public String getLocation() {
         return location;
     }
@@ -27,4 +30,10 @@ public class Employer extends AbstractEntity {
     public void setLocation(String location) {
         this.location = location;
     }
+
+
+    public List<Job> getJobs(){
+    return jobs;
+ }
+    public void setJobs(List<Job>jobs){ this.jobs = jobs;}
 }

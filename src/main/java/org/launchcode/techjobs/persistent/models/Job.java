@@ -10,20 +10,20 @@ import java.util.List;
 public class Job extends AbstractEntity{
 
     @ManyToOne
-    @JoinColumn(name = "employer_id")
     private Employer employer;
 
     @ManyToMany
-    private List<Skill> skills = new ArrayList<>();
+    private List<Skill> skills;
 
 
     public Job() {
     }
 
 
-    public Job(Employer anEmployer) {
+    public Job(Employer employer, List<Skill> skills)  {
         super();
-        this.employer = anEmployer;
+        this.employer = employer;
+        this.skills = skills;
     }
 
 
@@ -37,7 +37,7 @@ public class Job extends AbstractEntity{
     }
 
 
-    public List<Skill> getSkills() {
+    public Iterable<Skill> getSkills() {
         return skills;
     }
     public void setSkills(List<Skill> skills) {
